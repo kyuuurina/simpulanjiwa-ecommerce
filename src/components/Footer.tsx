@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <img
-                src="/images/sj logo.jpg"
+                src="/images/sj-logo.jpg"
                 alt="Simpulan Jiwa"
                 className="w-8 h-8 rounded-full object-cover border border-border"
               />

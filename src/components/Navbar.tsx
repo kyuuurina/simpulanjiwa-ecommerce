@@ -20,7 +20,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img
-            src="/images/sj logo.jpg"
+            src="/images/sj-logo.jpg"
             alt="Simpulan Jiwa"
             className="w-9 h-9 rounded-full object-cover border border-border"
           />
