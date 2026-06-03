@@ -1,20 +1,46 @@
 import { Link } from "react-router-dom";
-import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCart, SIZE_PRICES } from "@/context/CartContext";
+import { useCart, SIZE_PRICES, WISH_CARD_PRICE } from "@/context/CartContext";
 import { formatMYR } from "@/lib/utils";
-import { toast } from "sonner";
+
+const WA_NUMBER = "601159546069";
+
+function buildWhatsAppMessage(items: ReturnType<typeof useCart>["items"], subtotal: number) {
+  const lines: string[] = [];
+
+  lines.push("🌸 *New Order – Simpulan Jiwa*");
+  lines.push("");
+  lines.push("*Order Details:*");
+
+  items.forEach((item, i) => {
+    const unitPrice = SIZE_PRICES[item.size] + (item.wishCard ? WISH_CARD_PRICE : 0);
+    lines.push(`${i + 1}. ${item.product.name}`);
+    lines.push(`   Size: ${item.size} | Qty: ${item.quantity} | ${formatMYR(unitPrice)} each`);
+    if (item.wishCard) {
+      lines.push(`   📝 Wish card: "${item.wishMessage}"`);
+    }
+  });
+
+  lines.push("");
+  lines.push(`*Subtotal: ${formatMYR(subtotal)}*`);
+  lines.push("");
+  lines.push("Please confirm availability and delivery details. Thank you! 🌷");
+
+  return lines.join("\n");
+}
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, subtotal, clearCart } = useCart();
 
-  const delivery = subtotal > 0 ? (subtotal >= 200 ? 0 : 15) : 0;
-  const total = subtotal + delivery;
-
-  function handleCheckout() {
-    toast.info("Payment coming soon!", {
-      description: "We're working on it. Thank you for your patience!",
-    });
+  function handleWhatsAppOrder() {
+    const message = buildWhatsAppMessage(items, subtotal);
+    const encoded = encodeURIComponent(message);
+    window.open(
+      `https://api.whatsapp.com/send/?phone=${WA_NUMBER}&text=${encoded}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   }
 
   if (items.length === 0) {
@@ -47,13 +73,12 @@ export default function CartPage() {
         <div className="lg:col-span-2 space-y-4">
           {items.map((item) => {
             const { product, quantity, size, wishCard, wishMessage } = item;
-            const unitPrice = SIZE_PRICES[size] + (wishCard ? 5 : 0);
+            const unitPrice = SIZE_PRICES[size] + (wishCard ? WISH_CARD_PRICE : 0);
             return (
               <div
                 key={`${product.id}__${size}`}
                 className="flex gap-4 bg-card border border-border rounded-xl p-4"
               >
-                {/* Thumbnail */}
                 <Link to={`/products/${product.slug}`} className="shrink-0">
                   <img
                     src={product.imageUrl}
@@ -62,7 +87,6 @@ export default function CartPage() {
                   />
                 </Link>
 
-                {/* Info */}
                 <div className="flex-1 min-w-0">
                   <Link
                     to={`/products/${product.slug}`}
@@ -77,7 +101,7 @@ export default function CartPage() {
                     </span>
                     {wishCard && (
                       <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full font-medium">
-                        Wish card +RM5
+                        Wish card +RM1
                       </span>
                     )}
                   </div>
@@ -89,7 +113,6 @@ export default function CartPage() {
                   )}
 
                   <div className="flex items-center justify-between">
-                    {/* Qty controls */}
                     <div className="flex items-center border border-border rounded-lg overflow-hidden">
                       <button
                         className="px-2 py-1 hover:bg-muted transition-colors disabled:opacity-40"
@@ -132,27 +155,34 @@ export default function CartPage() {
             <h2 className="font-display text-lg font-semibold text-foreground mb-5">Order Summary</h2>
 
             <div className="space-y-3 text-sm mb-5">
-              <div className="flex justify-between text-muted-foreground">
-                <span>Subtotal</span>
-                <span>{formatMYR(subtotal)}</span>
-              </div>
-              <div className="flex justify-between text-muted-foreground">
-                <span>Delivery</span>
-                <span>{delivery === 0 ? "Free" : formatMYR(delivery)}</span>
-              </div>
-              {delivery > 0 && (
-                <p className="text-xs text-muted-foreground italic">
-                  Free delivery on orders over RM 200
-                </p>
-              )}
+              {items.map((item) => {
+                const unitPrice = SIZE_PRICES[item.size] + (item.wishCard ? WISH_CARD_PRICE : 0);
+                return (
+                  <div key={`${item.product.id}__${item.size}`} className="flex justify-between text-muted-foreground">
+                    <span className="line-clamp-1 flex-1 pr-2">
+                      {item.product.name} <span className="text-xs">({item.size}) ×{item.quantity}</span>
+                    </span>
+                    <span className="shrink-0">{formatMYR(unitPrice * item.quantity)}</span>
+                  </div>
+                );
+              })}
               <div className="border-t border-border pt-3 flex justify-between font-bold text-foreground text-base">
-                <span>Total</span>
-                <span className="text-primary">{formatMYR(total)}</span>
+                <span>Subtotal</span>
+                <span className="text-primary">{formatMYR(subtotal)}</span>
               </div>
             </div>
 
-            <Button size="lg" className="w-full gap-2" onClick={handleCheckout}>
-              Proceed to Checkout <ArrowRight className="w-4 h-4" />
+            <p className="text-xs text-muted-foreground mb-5 leading-relaxed">
+              Delivery details will be confirmed by our team after you place your order via WhatsApp.
+            </p>
+
+            <Button
+              size="lg"
+              className="w-full gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0"
+              onClick={handleWhatsAppOrder}
+            >
+              <MessageCircle className="w-5 h-5" />
+              Order via WhatsApp
             </Button>
 
             <Link

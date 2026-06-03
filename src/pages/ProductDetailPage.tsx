@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useCart, type BouquetSize, SIZE_PRICES } from "@/context/CartContext";
+import { useCart, type BouquetSize, SIZE_PRICES, WISH_CARD_PRICE } from "@/context/CartContext";
 import { getProductBySlug } from "@/data/products";
 import { formatMYR } from "@/lib/utils";
 import { toast } from "sonner";
@@ -16,7 +16,6 @@ const SIZES: { label: BouquetSize; price: number }[] = [
   { label: "XK", price: SIZE_PRICES.XK },
 ];
 
-const WISH_CARD_PRICE = 5;
 const MAX_WORDS = 30;
 
 function countWords(text: string) {

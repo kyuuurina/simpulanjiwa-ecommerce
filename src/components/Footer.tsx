@@ -1,30 +1,57 @@
 import { Link } from "react-router-dom";
-import { Mail, ExternalLink, Phone } from "lucide-react";
+import { Mail, ExternalLink, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary border-t border-border mt-16">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-brand-primary text-white mt-16">
+      <div className="container mx-auto px-4 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-3 mb-4">
               <img
                 src="/images/sj-logo.jpg"
                 alt="Simpulan Jiwa"
-                className="w-8 h-8 rounded-full object-cover border border-border"
+                className="w-10 h-10 rounded-full object-cover border-2 border-brand-secondary"
               />
-              <span className="font-display text-base font-semibold text-foreground">Simpulan Jiwa</span>
+              <span className="font-display text-xl font-semibold">Simpulan Jiwa</span>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Flowers that tie hearts closer.
+            <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-sm">
+              Flowers that tie hearts closer. A floral experience brand crafting bespoke bouquets
+              for life's most meaningful moments — weddings, celebrations, farewells, and everything
+              in between.
             </p>
+            <div className="flex flex-col gap-3 text-sm text-white/70">
+              <a
+                href="https://api.whatsapp.com/send/?phone=601159546069"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 hover:text-white transition-colors"
+              >
+                <Phone className="w-4 h-4 text-brand-secondary shrink-0" />
+                +60 11-5954 6069
+              </a>
+              <a
+                href="mailto:simpulanjiwa@gmail.com"
+                className="flex items-center gap-2 hover:text-white transition-colors"
+              >
+                <Mail className="w-4 h-4 text-brand-secondary shrink-0" />
+                simpulanjiwa@gmail.com
+              </a>
+              <span className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-brand-secondary shrink-0 mt-0.5" />
+                Casa Wood Cybersouth, Jln CW 1,<br />43800 Dengkil, Selangor
+              </span>
+            </div>
           </div>
 
-          {/* Links */}
+          {/* Quick links */}
           <div>
-            <h4 className="font-display text-sm font-semibold text-foreground mb-3">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h4 className="font-display text-sm font-semibold text-brand-secondary mb-4 uppercase tracking-widest">
+              Explore
+            </h4>
+            <ul className="space-y-3 text-sm text-white/70">
               {[
                 { to: "/", label: "Home" },
                 { to: "/shop", label: "Shop" },
@@ -32,7 +59,7 @@ export default function Footer() {
                 { to: "/cart", label: "My Cart" },
               ].map((l) => (
                 <li key={l.to}>
-                  <Link to={l.to} className="hover:text-primary transition-colors">
+                  <Link to={l.to} className="hover:text-white transition-colors">
                     {l.label}
                   </Link>
                 </li>
@@ -40,44 +67,40 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Collections */}
           <div>
-            <h4 className="font-display text-sm font-semibold text-foreground mb-3">Connect</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a
-                  href="https://instagram.com/simpulanjiwa"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 hover:text-primary transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" /> @simpulanjiwa
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:simpulanjiwa@gmail.com"
-                  className="flex items-center gap-2 hover:text-primary transition-colors"
-                >
-                  <Mail className="w-4 h-4" /> simpulanjiwa@gmail.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://api.whatsapp.com/send/?phone=601159546069"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 hover:text-primary transition-colors"
-                >
-                  <Phone className="w-4 h-4" /> +60 11-5954 6069
-                </a>
-              </li>
+            <h4 className="font-display text-sm font-semibold text-brand-secondary mb-4 uppercase tracking-widest">
+              Collections
+            </h4>
+            <ul className="space-y-3 text-sm text-white/70">
+              {["Bestsellers", "Convocation", "Father's Day", "Budget"].map((cat) => (
+                <li key={cat}>
+                  <Link to="/shop" className="hover:text-white transition-colors">
+                    {cat}
+                  </Link>
+                </li>
+              ))}
             </ul>
+
+            <h4 className="font-display text-sm font-semibold text-brand-secondary mt-8 mb-4 uppercase tracking-widest">
+              Follow Us
+            </h4>
+            <a
+              href="https://instagram.com/simpulanjiwa"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" /> @simpulanjiwa
+            </a>
           </div>
+
         </div>
 
-        <div className="mt-10 pt-6 border-t border-border text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Simpulan Jiwa. All rights reserved.
+        {/* Divider + bottom line */}
+        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/40">
+          <span>© {new Date().getFullYear()} Simpulan Jiwa. All rights reserved.</span>
+          <span className="font-display italic text-white/30">Flowers that tie hearts closer.</span>
         </div>
       </div>
     </footer>

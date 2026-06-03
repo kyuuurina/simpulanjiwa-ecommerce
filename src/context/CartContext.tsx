@@ -10,6 +10,8 @@ export const SIZE_PRICES: Record<BouquetSize, number> = {
   XK: 179,
 };
 
+export const WISH_CARD_PRICE = 1;
+
 export interface CartItem {
   product: Product;
   quantity: number;
@@ -99,7 +101,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw) as CartItem[];
-        if (Array.isArray(parsed)) dispatch({ type: "LOAD_CART", items: parsed });
+        if (Array.isArray(parsed)) {
+          // Filter out items missing required fields (stale data from old schema)
+          const valid = parsed.filter(
+            (i) => i?.product && i?.size && SIZE_PRICES[i.size] !== undefined
+          );
+          dispatch({ type: "LOAD_CART", items: valid });
+        }
       }
     } catch { /* ignore */ }
   }, []);
@@ -126,7 +134,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const totalItems = state.items.reduce((sum, i) => sum + i.quantity, 0);
   const subtotal = state.items.reduce(
-    (sum, i) => sum + (SIZE_PRICES[i.size] + (i.wishCard ? 5 : 0)) * i.quantity,
+    (sum, i) => sum + (SIZE_PRICES[i.size] + (i.wishCard ? WISH_CARD_PRICE : 0)) * i.quantity,
     0
   );
 

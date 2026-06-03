@@ -149,13 +149,14 @@ export default function HomePage() {
 
       {/* CTA banner */}
       <section className="container mx-auto px-4 py-16">
-        <div className="rounded-3xl bg-primary text-primary-foreground p-10 md:p-16 text-center relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
+        <div className="rounded-3xl text-primary-foreground p-10 md:p-16 text-center relative overflow-hidden">
+          <div className="absolute inset-0">
             <img
-              src="https://picsum.photos/seed/cta-pattern/1200/400"
+              src="/images/1.jpeg"
               alt=""
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-brand-primary/70" />
           </div>
           <div className="relative z-10">
             <h2 className="font-display text-3xl md:text-4xl mb-4">Send a Bouquet Today</h2>
