@@ -59,7 +59,7 @@ export const products: Product[] = [
     tags: ["Gerbera", "Rose", "Carnation", "Chrysanthemum"],
     description:
       "A joyful explosion of colour, Candyland brings together cheerful blooms in shades of pink, yellow, cream, and white to create a bouquet that feels like happiness wrapped in flowers. Featuring vibrant gerberas, sweet roses, delicate carnations, playful chrysanthemums, and dainty chamomile, every stem adds a touch of whimsy and charm.",
-    imageUrl: "/images/candyland.png",
+    imageUrl: "/images/Candyland.png",
     featured: true,
     stock: 10,
   },
@@ -72,7 +72,7 @@ export const products: Product[] = [
     tags: ["Rose", "Gerbera", "Chrysanthemum"],
     description:
       "Inspired by the beloved drink, Strawberry Matcha blends sweet blush pinks with refreshing shades of green to create a bouquet that feels both playful and comforting. Soft roses, cheerful gerberas, delicate chrysanthemums, and dainty fillers come together in a color palette reminiscent of fresh strawberries swirled into creamy matcha.",
-    imageUrl: "/images/simpulan-jiwa-studio.png",
+    imageUrl: "/images/strawberry-matcha.png",
     featured: true,
     stock: 10,
   },

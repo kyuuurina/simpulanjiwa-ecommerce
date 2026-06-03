@@ -67,22 +67,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Collections */}
+          {/* Follow Us */}
           <div>
             <h4 className="font-display text-sm font-semibold text-brand-secondary mb-4 uppercase tracking-widest">
-              Collections
-            </h4>
-            <ul className="space-y-3 text-sm text-white/70">
-              {["Bestsellers", "Convocation", "Father's Day", "Budget"].map((cat) => (
-                <li key={cat}>
-                  <Link to="/shop" className="hover:text-white transition-colors">
-                    {cat}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <h4 className="font-display text-sm font-semibold text-brand-secondary mt-8 mb-4 uppercase tracking-widest">
               Follow Us
             </h4>
             <a
