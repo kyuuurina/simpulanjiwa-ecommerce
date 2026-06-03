@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, ExternalLink } from "lucide-react";
+import { Mail, ExternalLink, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -17,7 +17,7 @@ export default function Footer() {
               <span className="font-display text-base font-semibold text-foreground">Simpulan Jiwa</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Handcrafted bouquets made with love in Malaysia. Every bloom tells a story.
+              Flowers that tie hearts closer.
             </p>
           </div>
 
@@ -56,10 +56,20 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:hello@simpulanjiwa.my"
+                  href="mailto:simpulanjiwa@gmail.com"
                   className="flex items-center gap-2 hover:text-primary transition-colors"
                 >
-                  <Mail className="w-4 h-4" /> hello@simpulanjiwa.my
+                  <Mail className="w-4 h-4" /> simpulanjiwa@gmail.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://api.whatsapp.com/send/?phone=601159546069"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 hover:text-primary transition-colors"
+                >
+                  <Phone className="w-4 h-4" /> +60 11-5954 6069
                 </a>
               </li>
             </ul>
@@ -67,7 +77,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-border text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Simpulan Jiwa. All rights reserved. Made with ♥ in Malaysia.
+          © {new Date().getFullYear()} Simpulan Jiwa. All rights reserved.
         </div>
       </div>
     </footer>

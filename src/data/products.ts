@@ -1,4 +1,5 @@
-export type Category = "Wedding" | "Casual" | "Gift" | "Preserved";
+export type Category = "Bestsellers" | "Convocation" | "Father's Day" | "Budget";
+export type FlowerTag = "Rose" | "Lily" | "Daisy";
 
 export interface Product {
   id: string;
@@ -6,6 +7,7 @@ export interface Product {
   slug: string;
   price: number; // MYR
   category: Category;
+  tags: FlowerTag[]; // hidden — used for internal filtering
   description: string;
   imageUrl: string;
   featured: boolean;
@@ -15,12 +17,13 @@ export interface Product {
 export const products: Product[] = [
   {
     id: "1",
-    name: "Eternal Rose Bridal Bouquet",
-    slug: "eternal-rose-bridal-bouquet",
+    name: "Eternal Rose Bouquet",
+    slug: "eternal-rose-bouquet",
     price: 280,
-    category: "Wedding",
+    category: "Bestsellers",
+    tags: ["Rose"],
     description:
-      "A breathtaking cascade of fresh white and blush roses, interspersed with delicate baby's breath and eucalyptus. Designed to complement any bridal gown, this bouquet is the centrepiece of your most cherished day. Each stem is hand-selected for peak bloom.",
+      "A breathtaking cascade of fresh white and blush roses, interspersed with delicate baby's breath and eucalyptus. One of our most-loved arrangements — hand-selected for peak bloom and wrapped to impress.",
     imageUrl: "/images/simpulan-jiwa-studio.png",
     featured: true,
     stock: 10,
@@ -30,88 +33,95 @@ export const products: Product[] = [
     name: "Rosy Rendezvous",
     slug: "rosy-rendezvous",
     price: 95,
-    category: "Casual",
+    category: "Budget",
+    tags: ["Rose"],
     description:
-      "A cheerful hand-tied bunch of garden roses in warm coral and peachy tones. Perfect for a spontaneous date night, a housewarming, or simply because you deserve flowers. Wrapped in kraft paper and tied with a satin ribbon.",
+      "A cheerful hand-tied bunch of garden roses in warm coral and peachy tones. Perfect for a spontaneous gift or simply because you deserve flowers. Wrapped in kraft paper and tied with a satin ribbon.",
     imageUrl: "/images/simpulan-jiwa-studio.png",
     featured: true,
     stock: 20,
   },
   {
     id: "3",
-    name: "Golden Celebration Box",
-    slug: "golden-celebration-box",
+    name: "Convocation Bloom Box",
+    slug: "convocation-bloom-box",
     price: 160,
-    category: "Gift",
+    category: "Convocation",
+    tags: ["Lily", "Daisy"],
     description:
-      "An elegant bloom box brimming with sunflowers, yellow tulips, and chamomile daisies. The golden palette radiates warmth and joy — ideal for birthdays, anniversaries, promotions, or any milestone worth celebrating.",
+      "Celebrate your graduate's big day with an elegant bloom box of white lilies, cheerful daisies, and lush greenery. A keepsake arrangement worthy of the milestone.",
     imageUrl: "/images/simpulan-jiwa-studio.png",
     featured: true,
     stock: 15,
   },
   {
     id: "4",
-    name: "Dusty Mauve Preserved Arrangement",
-    slug: "dusty-mauve-preserved-arrangement",
+    name: "Scholar's Pride Bouquet",
+    slug: "scholars-pride-bouquet",
     price: 220,
-    category: "Preserved",
+    category: "Convocation",
+    tags: ["Rose", "Lily"],
     description:
-      "Timeless beauty that lasts for months. A curated selection of preserved roses, dried bunny tails, and pampas grass in muted mauve and sage tones. Housed in a ceramic pot, this arrangement requires zero maintenance while keeping your space looking effortlessly chic.",
+      "A grand celebration bouquet of premium roses and lilies in crisp white and gold tones. The go-to choice for convocation ceremonies — bold, beautiful, and photo-ready.",
     imageUrl: "/images/simpulan-jiwa-studio.png",
     featured: true,
     stock: 8,
   },
   {
     id: "5",
-    name: "Blushing Peonies Bundle",
-    slug: "blushing-peonies-bundle",
+    name: "Dad's Day Daisy Bundle",
+    slug: "dads-day-daisy-bundle",
     price: 130,
-    category: "Casual",
+    category: "Father's Day",
+    tags: ["Daisy"],
     description:
-      "Lush, full-bloom peonies in the softest blush pink, bundled together with sprigs of wax flower and maidenhair fern. Their heady fragrance fills any room instantly. Best enjoyed fresh within the first week of delivery.",
+      "A warm, cheerful bundle of sunflowers and daisies in earthy tones — strong and bright, just like Dad. Simple, heartfelt, and unforgettable.",
     imageUrl: "/images/simpulan-jiwa-studio.png",
     featured: false,
     stock: 12,
   },
   {
     id: "6",
-    name: "Love Letter Arrangement",
-    slug: "love-letter-arrangement",
+    name: "For the Man of the House",
+    slug: "man-of-the-house",
     price: 185,
-    category: "Gift",
+    category: "Father's Day",
+    tags: ["Lily"],
     description:
-      "A romantic composition of deep red roses, wine-toned ranunculus, and burgundy dahlias arranged in a vintage-style vase. Include a personalised handwritten note card to make your feelings felt long before words are spoken.",
+      "A refined arrangement of stargazer lilies and greenery in deep, rich tones. Because Dad deserves flowers too — and this one says it all without saying a word.",
     imageUrl: "/images/simpulan-jiwa-studio.png",
     featured: false,
     stock: 10,
   },
   {
     id: "7",
-    name: "Sakura Dream Wreath",
-    slug: "sakura-dream-wreath",
-    price: 200,
-    category: "Preserved",
+    name: "Sweet Little Posy",
+    slug: "sweet-little-posy",
+    price: 55,
+    category: "Budget",
+    tags: ["Daisy"],
     description:
-      "Inspired by the fleeting beauty of Japanese cherry blossoms, this wall wreath combines preserved pink sakura branches, dried lavender, and white cotton stems on a willow base. A poetic accent piece for any home.",
+      "A petite and pretty posy of mixed daisies and seasonal blooms. Big on charm, easy on the wallet. Perfect for a small gesture that means a lot.",
     imageUrl: "/images/simpulan-jiwa-studio.png",
     featured: false,
-    stock: 6,
+    stock: 25,
   },
   {
     id: "8",
-    name: "Champagne Toast Bridal Wrist",
-    slug: "champagne-toast-bridal-wrist",
-    price: 75,
-    category: "Wedding",
+    name: "Fan Favourite Wrap",
+    slug: "fan-favourite-wrap",
+    price: 120,
+    category: "Bestsellers",
+    tags: ["Rose", "Daisy"],
     description:
-      "A delicate wrist corsage featuring miniature cream spray roses, white lisianthus buds, and pearl pin accents. Designed to complement the bridal party's ensemble, secured comfortably with an adjustable satin band.",
+      "Our most-ordered hand wrap — a lush mix of roses and daisies in blush and cream, finished with our signature ribbon. A crowd-pleaser for any occasion.",
     imageUrl: "/images/simpulan-jiwa-studio.png",
     featured: false,
     stock: 18,
   },
 ];
 
-export const categories: Category[] = ["Wedding", "Casual", "Gift", "Preserved"];
+export const categories: Category[] = ["Bestsellers", "Convocation", "Father's Day", "Budget"];
 
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);

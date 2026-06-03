@@ -3,25 +3,14 @@ import { ShoppingBag } from "lucide-react";
 import type { Product } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/context/CartContext";
-import { toast } from "sonner";
 import { formatMYR } from "@/lib/utils";
+import { SIZE_PRICES } from "@/context/CartContext";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const { addItem } = useCart();
-
-  function handleAddToCart(e: React.MouseEvent) {
-    e.preventDefault();
-    addItem(product, 1);
-    toast.success(`${product.name} added to cart!`, {
-      description: formatMYR(product.price),
-    });
-  }
-
   return (
     <Link to={`/products/${product.slug}`} className="group block">
       <div className="product-card">
@@ -38,15 +27,11 @@ export default function ProductCard({ product }: ProductCardProps) {
               {product.category}
             </Badge>
           </div>
-          {/* Quick add overlay */}
+          {/* View product overlay */}
           <div className="absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-            <Button
-              size="sm"
-              className="w-full gap-2"
-              onClick={handleAddToCart}
-            >
+            <Button size="sm" className="w-full gap-2" tabIndex={-1}>
               <ShoppingBag className="w-4 h-4" />
-              Quick Add
+              Select Size
             </Button>
           </div>
         </div>
@@ -56,7 +41,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           <h3 className="font-display text-base font-medium text-foreground leading-snug mb-1 line-clamp-2">
             {product.name}
           </h3>
-          <p className="text-primary font-semibold text-sm">{formatMYR(product.price)}</p>
+          <p className="text-primary font-semibold text-sm">
+            From {formatMYR(SIZE_PRICES.S)}
+          </p>
         </div>
       </div>
     </Link>

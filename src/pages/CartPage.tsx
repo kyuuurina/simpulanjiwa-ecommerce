@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/context/CartContext";
+import { useCart, SIZE_PRICES } from "@/context/CartContext";
 import { formatMYR } from "@/lib/utils";
 import { toast } from "sonner";
 
@@ -25,9 +25,7 @@ export default function CartPage() {
         <p className="text-muted-foreground mb-8 text-sm">
           Looks like you haven't added any bouquets yet.
         </p>
-        <Button asChild>
-          <Link to="/shop">Browse Bouquets</Link>
-        </Button>
+        <Button asChild><Link to="/shop">Browse Bouquets</Link></Button>
       </div>
     );
   }
@@ -47,65 +45,85 @@ export default function CartPage() {
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Line items */}
         <div className="lg:col-span-2 space-y-4">
-          {items.map(({ product, quantity }) => (
-            <div
-              key={product.id}
-              className="flex gap-4 bg-card border border-border rounded-xl p-4"
-            >
-              {/* Thumbnail */}
-              <Link to={`/products/${product.slug}`} className="shrink-0">
-                <img
-                  src={product.imageUrl}
-                  alt={product.name}
-                  className="w-20 h-24 object-cover rounded-lg"
-                />
-              </Link>
-
-              {/* Info */}
-              <div className="flex-1 min-w-0">
-                <Link
-                  to={`/products/${product.slug}`}
-                  className="font-display text-base font-medium text-foreground hover:text-primary transition-colors line-clamp-2"
-                >
-                  {product.name}
+          {items.map((item) => {
+            const { product, quantity, size, wishCard, wishMessage } = item;
+            const unitPrice = SIZE_PRICES[size] + (wishCard ? 5 : 0);
+            return (
+              <div
+                key={`${product.id}__${size}`}
+                className="flex gap-4 bg-card border border-border rounded-xl p-4"
+              >
+                {/* Thumbnail */}
+                <Link to={`/products/${product.slug}`} className="shrink-0">
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="w-20 h-24 object-cover rounded-lg"
+                  />
                 </Link>
-                <p className="text-xs text-muted-foreground mb-3">{product.category}</p>
 
-                <div className="flex items-center justify-between">
-                  {/* Qty controls */}
-                  <div className="flex items-center border border-border rounded-lg overflow-hidden">
-                    <button
-                      className="px-2 py-1 hover:bg-muted transition-colors disabled:opacity-40"
-                      onClick={() => updateQuantity(product.id, quantity - 1)}
-                      disabled={quantity <= 1}
-                    >
-                      <Minus className="w-3 h-3" />
-                    </button>
-                    <span className="w-8 text-center text-xs font-semibold">{quantity}</span>
-                    <button
-                      className="px-2 py-1 hover:bg-muted transition-colors"
-                      onClick={() => updateQuantity(product.id, quantity + 1)}
-                    >
-                      <Plus className="w-3 h-3" />
-                    </button>
+                {/* Info */}
+                <div className="flex-1 min-w-0">
+                  <Link
+                    to={`/products/${product.slug}`}
+                    className="font-display text-base font-medium text-foreground hover:text-primary transition-colors line-clamp-2"
+                  >
+                    {product.name}
+                  </Link>
+
+                  <div className="flex flex-wrap gap-2 mt-1 mb-2">
+                    <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full font-medium">
+                      Size {size} · {formatMYR(SIZE_PRICES[size])}
+                    </span>
+                    {wishCard && (
+                      <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full font-medium">
+                        Wish card +RM5
+                      </span>
+                    )}
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <p className="font-semibold text-sm text-primary">
-                      {formatMYR(product.price * quantity)}
+                  {wishCard && wishMessage && (
+                    <p className="text-xs text-muted-foreground italic mb-2 line-clamp-2">
+                      "{wishMessage}"
                     </p>
-                    <button
-                      className="text-muted-foreground hover:text-destructive transition-colors"
-                      onClick={() => removeItem(product.id)}
-                      aria-label="Remove item"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                  )}
+
+                  <div className="flex items-center justify-between">
+                    {/* Qty controls */}
+                    <div className="flex items-center border border-border rounded-lg overflow-hidden">
+                      <button
+                        className="px-2 py-1 hover:bg-muted transition-colors disabled:opacity-40"
+                        onClick={() => updateQuantity(product.id, size, quantity - 1)}
+                        disabled={quantity <= 1}
+                      >
+                        <Minus className="w-3 h-3" />
+                      </button>
+                      <span className="w-8 text-center text-xs font-semibold">{quantity}</span>
+                      <button
+                        className="px-2 py-1 hover:bg-muted transition-colors"
+                        onClick={() => updateQuantity(product.id, size, quantity + 1)}
+                      >
+                        <Plus className="w-3 h-3" />
+                      </button>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <p className="font-semibold text-sm text-primary">
+                        {formatMYR(unitPrice * quantity)}
+                      </p>
+                      <button
+                        className="text-muted-foreground hover:text-destructive transition-colors"
+                        onClick={() => removeItem(product.id, size)}
+                        aria-label="Remove item"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Order summary */}

@@ -50,13 +50,14 @@ export default function HomePage() {
               Handcrafted Florals · Kuala Lumpur
             </p>
             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6">
-              Flowers That{" "}
-              <em className="text-brand-secondary not-italic">Speak</em> From
-              the Heart
+              Flowers that{" "}
+              <em className="text-brand-secondary not-italic">tie hearts</em>{" "}
+              closer
             </h1>
             <p className="text-white/80 text-base md:text-lg leading-relaxed mb-8 max-w-md">
-              Simpulan Jiwa ("ties of the soul") creates bespoke bouquets for every chapter of
-              your life — weddings, celebrations, quiet gifts, and everything in between.
+              Simpulan Jiwa ("a binding of souls") creates bespoke bouquets for every chapter of
+              your life — weddings, celebrations, quiet gifts, and everything in between.{" "}
+              Same-day delivery available across Cyberjaya, Putrajaya, Bangi & surrounding areas.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button size="lg" asChild className="bg-brand-primary hover:bg-brand-primary/90 text-white border-0">
@@ -123,18 +124,20 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
             <div className="rounded-2xl overflow-hidden aspect-[4/3]">
               <img
-                src="https://picsum.photos/seed/florist-studio/800/600"
-                alt="Our studio"
+                src="/images/big-bloom.jpeg"
+                alt="Simpulan Jiwa in bloom"
                 className="w-full h-full object-cover"
               />
             </div>
             <div>
               <p className="text-primary text-xs tracking-widest uppercase font-sans mb-3">About Us</p>
-              <h2 className="section-heading mb-4">Rooted in Love, Bloomed with Purpose</h2>
+              <h2 className="section-heading mb-4">Flowers that tie hearts closer</h2>
               <p className="text-muted-foreground leading-relaxed mb-6 text-sm md:text-base">
-                Simpulan Jiwa was born out of a simple belief: that flowers are not just decorations —
-                they are messengers of emotion. Founded in the heart of Kuala Lumpur, we source only
-                the freshest blooms and craft each bouquet with intention and artistry.
+                Simpulan Jiwa — a binding of souls — is a floral experience brand that believes every
+                celebration deserves a moment of beauty. Just as flowers have long been a language of
+                the heart, we bring fresh blooms, a skilled team, and a whole lot of care directly to
+                your event, so every guest leaves with something that ties a little piece of the day
+                to their soul.
               </p>
               <Button variant="outline" asChild>
                 <Link to="/about">Read Our Story</Link>
@@ -157,7 +160,7 @@ export default function HomePage() {
           <div className="relative z-10">
             <h2 className="font-display text-3xl md:text-4xl mb-4">Send a Bouquet Today</h2>
             <p className="text-primary-foreground/80 mb-8 max-w-md mx-auto text-sm md:text-base">
-              Same-day delivery available across Klang Valley. Make someone's day extraordinary.
+              Same-day delivery available across Cyberjaya, Putrajaya, Bangi & surrounding areas. Make someone's day extraordinary.
             </p>
             <Button size="lg" variant="secondary" asChild>
               <Link to="/shop">

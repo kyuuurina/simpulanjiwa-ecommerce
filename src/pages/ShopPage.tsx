@@ -16,10 +16,12 @@ export default function ShopPage() {
 
   const filtered = products.filter((p) => {
     const matchCat = activeCategory === ALL || p.category === activeCategory;
+    const q = query.trim().toLowerCase();
     const matchQuery =
-      query.trim() === "" ||
-      p.name.toLowerCase().includes(query.toLowerCase()) ||
-      p.description.toLowerCase().includes(query.toLowerCase());
+      q === "" ||
+      p.name.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      p.tags.some((tag) => tag.toLowerCase().includes(q)); // search hidden tags
     return matchCat && matchQuery;
   });
 
