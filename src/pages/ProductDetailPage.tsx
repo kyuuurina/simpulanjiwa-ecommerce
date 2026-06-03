@@ -84,7 +84,7 @@ export default function ProductDetailPage() {
 
         {/* Details */}
         <div className="flex flex-col justify-center">
-          <Badge variant="accent" className="w-fit mb-4">{product.category}</Badge>
+          <Badge variant="accent" className="w-fit mb-4">{product.categories[0]}</Badge>
 
           <h1 className="font-display text-3xl md:text-4xl text-foreground leading-tight mb-3">
             {product.name}

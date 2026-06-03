@@ -15,13 +15,13 @@ export default function ShopPage() {
   const tabs: FilterTab[] = [ALL, ...categories];
 
   const filtered = products.filter((p) => {
-    const matchCat = activeCategory === ALL || p.category === activeCategory;
+    const matchCat = activeCategory === ALL || p.categories.includes(activeCategory);
     const q = query.trim().toLowerCase();
     const matchQuery =
       q === "" ||
       p.name.toLowerCase().includes(q) ||
       p.description.toLowerCase().includes(q) ||
-      p.tags.some((tag) => tag.toLowerCase().includes(q)); // search hidden tags
+      p.tags.some((tag) => tag.toLowerCase().includes(q));
     return matchCat && matchQuery;
   });
 

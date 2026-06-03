@@ -23,7 +23,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
           <div className="absolute top-3 left-3">
             <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm text-foreground text-xs">
-              {product.category}
+              {product.categories[0]}
             </Badge>
           </div>
           {/* View product overlay */}
