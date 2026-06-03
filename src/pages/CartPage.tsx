@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2, ShoppingBag, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCart, SIZE_PRICES, WISH_CARD_PRICE } from "@/context/CartContext";
+import { useCart,  WISH_CARD_PRICE } from "@/context/CartContext";
 import { formatMYR } from "@/lib/utils";
 
 const WA_NUMBER = "601159546069";
@@ -14,7 +14,7 @@ function buildWhatsAppMessage(items: ReturnType<typeof useCart>["items"], subtot
   lines.push("*Order Details:*");
 
   items.forEach((item, i) => {
-    const unitPrice = SIZE_PRICES[item.size] + (item.wishCard ? WISH_CARD_PRICE : 0);
+    const unitPrice = item.product.sizePrices[item.size] + (item.wishCard ? WISH_CARD_PRICE : 0);
     lines.push(`${i + 1}. ${item.product.name}`);
     lines.push(`   Size: ${item.size} | Qty: ${item.quantity} | ${formatMYR(unitPrice)} each`);
     if (item.wishCard) {
@@ -73,7 +73,7 @@ export default function CartPage() {
         <div className="lg:col-span-2 space-y-4">
           {items.map((item) => {
             const { product, quantity, size, wishCard, wishMessage } = item;
-            const unitPrice = SIZE_PRICES[size] + (wishCard ? WISH_CARD_PRICE : 0);
+            const unitPrice = product.sizePrices[size] + (wishCard ? WISH_CARD_PRICE : 0);
             return (
               <div
                 key={`${product.id}__${size}`}
@@ -97,7 +97,7 @@ export default function CartPage() {
 
                   <div className="flex flex-wrap gap-2 mt-1 mb-2">
                     <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full font-medium">
-                      Size {size} · {formatMYR(SIZE_PRICES[size])}
+                      Size {size} · {formatMYR(product.sizePrices[size])}
                     </span>
                     {wishCard && (
                       <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full font-medium">
@@ -156,7 +156,7 @@ export default function CartPage() {
 
             <div className="space-y-3 text-sm mb-5">
               {items.map((item) => {
-                const unitPrice = SIZE_PRICES[item.size] + (item.wishCard ? WISH_CARD_PRICE : 0);
+                const unitPrice = item.product.sizePrices[item.size] + (item.wishCard ? WISH_CARD_PRICE : 0);
                 return (
                   <div key={`${item.product.id}__${item.size}`} className="flex justify-between text-muted-foreground">
                     <span className="line-clamp-1 flex-1 pr-2">

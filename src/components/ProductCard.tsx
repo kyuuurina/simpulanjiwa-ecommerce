@@ -4,7 +4,6 @@ import type { Product } from "@/data/products";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatMYR } from "@/lib/utils";
-import { SIZE_PRICES } from "@/context/CartContext";
 
 interface ProductCardProps {
   product: Product;
@@ -42,7 +41,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
           <p className="text-primary font-semibold text-sm">
-            From {formatMYR(SIZE_PRICES.S)}
+            From {formatMYR(product.sizePrices.S)}
           </p>
         </div>
       </div>

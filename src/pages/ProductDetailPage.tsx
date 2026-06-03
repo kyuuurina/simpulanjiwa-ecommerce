@@ -3,18 +3,13 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useCart, type BouquetSize, SIZE_PRICES, WISH_CARD_PRICE } from "@/context/CartContext";
+import { useCart, type BouquetSize,  WISH_CARD_PRICE } from "@/context/CartContext";
 import { getProductBySlug } from "@/data/products";
 import { formatMYR } from "@/lib/utils";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
-const SIZES: { label: BouquetSize; price: number }[] = [
-  { label: "S",  price: SIZE_PRICES.S  },
-  { label: "M",  price: SIZE_PRICES.M  },
-  { label: "L",  price: SIZE_PRICES.L  },
-  { label: "XK", price: SIZE_PRICES.XK },
-];
+const SIZES: BouquetSize[] = ["S", "M", "L", "XK"];
 
 const MAX_WORDS = 30;
 
@@ -43,7 +38,7 @@ export default function ProductDetailPage() {
     );
   }
 
-  const sizePrice  = SIZE_PRICES[size];
+  const sizePrice  = product.sizePrices[size];
   const addOnPrice = wishCard ? WISH_CARD_PRICE : 0;
   const unitPrice  = sizePrice + addOnPrice;
   const wordCount  = countWords(wishMsg);
@@ -112,7 +107,7 @@ export default function ProductDetailPage() {
           <div className="mb-6">
             <p className="text-sm font-medium text-foreground mb-3">Size</p>
             <div className="flex flex-wrap gap-2">
-              {SIZES.map(({ label, price }) => (
+              {SIZES.map((label) => (
                 <button
                   key={label}
                   onClick={() => setSize(label)}
@@ -124,7 +119,7 @@ export default function ProductDetailPage() {
                   )}
                 >
                   <span className="text-base leading-none">{label}</span>
-                  <span className="text-[10px] font-normal opacity-80 mt-0.5">{formatMYR(price)}</span>
+                  <span className="text-[10px] font-normal opacity-80 mt-0.5">{formatMYR(product.sizePrices[label])}</span>
                 </button>
               ))}
             </div>

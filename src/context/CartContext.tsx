@@ -134,7 +134,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const totalItems = state.items.reduce((sum, i) => sum + i.quantity, 0);
   const subtotal = state.items.reduce(
-    (sum, i) => sum + (SIZE_PRICES[i.size] + (i.wishCard ? WISH_CARD_PRICE : 0)) * i.quantity,
+    (sum, i) => sum + ((i.product.sizePrices[i.size] ?? 0) + (i.wishCard ? WISH_CARD_PRICE : 0)) * i.quantity,
     0
   );
 
