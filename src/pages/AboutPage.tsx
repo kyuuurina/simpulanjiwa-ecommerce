@@ -23,27 +23,22 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Intro — split layout */}
-      <section className="grid md:grid-cols-2">
-        {/* Left: color block with first paragraph */}
-        <div className="bg-brand-primary text-white p-10 md:p-16 flex items-center">
-          <p className="font-display text-xl md:text-2xl leading-relaxed italic">
-            "Flowers do more than mark an occasion — they bring people closer together."
-          </p>
-        </div>
-        {/* Right: image */}
-        <div className="aspect-[4/3] md:aspect-auto">
-          <img
-            src="/images/big-bloom.jpeg"
-            alt="Simpulan Jiwa blooms"
-            className="w-full h-full object-cover"
-          />
-        </div>
+      {/* Photo grid */}
+      <section className="grid grid-cols-2 md:grid-cols-4">
+        {["1", "2", "3", "4"].map((n) => (
+          <div key={n} className="aspect-square overflow-hidden">
+            <img
+              src={`/images/${n}.jpeg`}
+              alt={`Simpulan Jiwa ${n}`}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+        ))}
       </section>
 
-      {/* Brand story — alternating sections */}
-      <section className="container mx-auto px-6 py-16 max-w-3xl">
-        <div className="space-y-6 text-sm md:text-base text-muted-foreground leading-relaxed">
+      {/* Brand story */}
+      <section className="container mx-auto px-6 py-16 max-w-2xl text-center">
+        <div className="space-y-5 text-sm md:text-base text-muted-foreground leading-relaxed">
           <p>
             Simpulan Jiwa is a floral experience brand rooted in the belief that flowers do more
             than mark an occasion — they bring people closer together.
@@ -58,73 +53,48 @@ export default function AboutPage() {
             Whether it is a birthday, wedding, appreciation, farewell, or simply a thoughtful
             surprise, we believe flowers have a way of saying what words cannot.
           </p>
-        </div>
-      </section>
-
-      {/* Pull quote */}
-      <section className="bg-brand-secondary/30 py-14">
-        <div className="container mx-auto px-6 max-w-3xl text-center">
-          <p className="font-display text-2xl md:text-3xl text-brand-primary leading-relaxed">
-            Every bouquet tells a story. Every arrangement carries meaning.
+          <p>
+            Every bouquet tells a story. Every arrangement carries meaning. From the choice of
+            blooms to the final ribbon, each detail is thoughtfully crafted to honour the moment
+            it represents.
           </p>
-          <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
-            From the choice of blooms to the final ribbon, each detail is thoughtfully crafted
-            to honour the moment it represents.
+          <p className="text-foreground font-medium pt-2">
+            At Simpulan Jiwa, we are here for life's meaningful moments — helping people express
+            what matters most, one bloom at a time.
           </p>
         </div>
       </section>
 
-      {/* Closing statement + image row */}
-      <section className="container mx-auto px-6 py-16 max-w-3xl">
-        <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-12">
-          At Simpulan Jiwa, we are here for life's meaningful moments — helping people express
-          what matters most, one bloom at a time.
-        </p>
-
-        {/* Photo grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {["1", "2", "3", "4"].map((n) => (
-            <div key={n} className="rounded-xl overflow-hidden aspect-square">
-              <img
-                src={`/images/${n}.jpeg`}
-                alt={`Simpulan Jiwa ${n}`}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Get in Touch — dark bg */}
-      <section className="bg-brand-primary text-white py-16">
+      {/* Get in Touch — light */}
+      <section className="bg-brand-secondary/20 py-16">
         <div className="container mx-auto px-6">
-          <div className="max-w-lg mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl mb-4">Get in Touch</h2>
-            <p className="text-white/70 text-sm mb-10 leading-relaxed">
+          <div className="max-w-lg mx-auto text-center">
+            <h2 className="font-display text-3xl md:text-4xl text-foreground mb-3">Get in Touch</h2>
+            <p className="text-muted-foreground text-sm mb-10 leading-relaxed">
               Have a custom order request, a question about delivery, or just want to say hello?
               We'd love to hear from you.
             </p>
-            <ul className="space-y-5 text-sm text-white/80">
+            <ul className="space-y-4 text-sm text-muted-foreground inline-flex flex-col items-start text-left">
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-brand-secondary mt-0.5 shrink-0" />
+                <MapPin className="w-4 h-4 text-brand-primary mt-0.5 shrink-0" />
                 <span>Casa Wood Cybersouth, Jln CW 1, 43800 Dengkil, Selangor</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-brand-secondary shrink-0" />
+                <Phone className="w-4 h-4 text-brand-primary shrink-0" />
                 <a
                   href="https://api.whatsapp.com/send/?phone=601159546069"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-brand-primary transition-colors"
                 >
                   +60 11-5954 6069
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-brand-secondary shrink-0" />
+                <Mail className="w-4 h-4 text-brand-primary shrink-0" />
                 <a
                   href="mailto:simpulanjiwa@gmail.com"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-brand-primary transition-colors"
                 >
                   simpulanjiwa@gmail.com
                 </a>
