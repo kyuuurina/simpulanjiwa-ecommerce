@@ -72,14 +72,44 @@ export default function Footer() {
             <h4 className="font-display text-sm font-semibold text-brand-secondary mb-4 uppercase tracking-widest">
               Follow Us
             </h4>
-            <a
-              href="https://instagram.com/simpulanjiwa"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
-            >
-              <ExternalLink className="w-4 h-4" /> @simpulanjiwa
-            </a>
+            <ul className="space-y-3 text-sm text-white/70">
+              <li>
+                <a
+                  href="https://instagram.com/simpulanjiwa"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                  <span>Instagram</span>
+                  <span className="text-white/40">@simpulanjiwa</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://threads.net/@simpulanjiwa"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                  <span>Threads</span>
+                  <span className="text-white/40">@simpulanjiwa</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://tiktok.com/@simpulanjiwa"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 hover:text-white transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                  <span>TikTok</span>
+                  <span className="text-white/40">@simpulanjiwa</span>
+                </a>
+              </li>
+            </ul>
           </div>
 
         </div>

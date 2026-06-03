@@ -194,10 +194,9 @@ export default function ProductDetailPage() {
           </Button>
 
           {/* Trust signals */}
-          <div className="mt-8 pt-6 border-t border-border space-y-2 text-xs text-muted-foreground">
-            <p>🌸 Same-day delivery available (order before 12pm)</p>
-            <p>📦 Elegant gift wrapping included</p>
-            <p>🔄 Remake guarantee if not satisfied</p>
+          <div className="mt-8 pt-6 border-t border-border space-y-1.5 text-xs text-muted-foreground">
+            <p className="flex items-start gap-2"><span>•</span><span>Same-day delivery available (order before 12pm)</span></p>
+            <p className="flex items-start gap-2"><span>•</span><span>A 15% last-minute charge applies for orders placed 2–24 hours before delivery</span></p>
           </div>
         </div>
       </div>
